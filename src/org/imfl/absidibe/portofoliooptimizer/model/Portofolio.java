@@ -15,16 +15,13 @@ public class Portofolio {
     }
 
     public void add(Asset asset){
-       add(asset,1);
-   }
-
-    public void add(Asset asset, int number){
-        for(int i = 0 ; i<number;i++){
-            this.assets.add(asset);
-        }
+       this.assets.add(asset);
+    }
+    public double[][] getCovariances() {
+        return covariances;
     }
 
-    public List<Asset> getAssets() {
-        return assets;
+    public int getSize() {
+        return assets.size();
     }
 }
