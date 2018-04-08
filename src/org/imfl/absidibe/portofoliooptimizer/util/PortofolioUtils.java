@@ -5,17 +5,18 @@ package org.imfl.absidibe.portofoliooptimizer.util;
  */
 public final class PortofolioUtils {
 
-    private PortofolioUtils() {}
+    private PortofolioUtils() {
+    }
 
-    public static void printCovariance(double[][] covariances){
+    public static void printCovariance(double[][] covariances) {
         int count = 0;
         int n = covariances.length;
-        for (int i = 0 ; i < n; i++) {
-            for (int j = 0 ; j < n ; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 System.out.println(covariances[i][j]);
                 count++;
             }
         }
-        System.out.println("Counter = "+ count);
+        System.out.println("Counter = " + count);
     }
 }

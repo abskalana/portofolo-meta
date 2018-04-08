@@ -13,14 +13,6 @@ public class Asset {
         this.type = type;
     }
 
-    public double getEsperance() {
-        return esperance;
-    }
-
-    public double getStd() {
-        return std;
-    }
-
     public Type getType() {
         return type;
     }

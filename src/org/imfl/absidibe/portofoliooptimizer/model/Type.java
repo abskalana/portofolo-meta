@@ -10,22 +10,25 @@ public class Type {
     private double budget;
     private double error;
     private double risk;
-    private List<Double> bornesup = new ArrayList<Double>();
+    private List<Double> bornesups = new ArrayList<Double>();
 
 
-    public static Type create(String name,double budget,double error, double risk){
-        return new Type(budget,error,name,risk);
+    private Type() {
     }
 
-    private  Type(double budget, double error, String name, double risk) {
-        this.budget = budget;
-        this.error = error;
-        this.name = name;
-        this.risk = risk;
+    public static Type create(String name, double budget, double error, double risk) {
+        Type type = new Type();
+        type.budget = budget;
+        type.error = error;
+        type.name = name;
+        type.risk = risk;
+        return type;
     }
 
-    public void add(double borne){
-        this.bornesup.add(borne);
+    public void setupBorneSup(int size, int nt) {
+        for (int i = 0; i < size; i++) {
+            bornesups.add(1.0 / nt);
+        }
     }
 
 
@@ -43,4 +46,5 @@ public class Type {
     public int hashCode() {
         return name.hashCode();
     }
+
 }

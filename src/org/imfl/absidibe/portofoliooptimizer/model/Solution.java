@@ -3,16 +3,14 @@ package org.imfl.absidibe.portofoliooptimizer.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by absidibe on 08/04/2018.
- */
+
 public class Solution {
 
     List<Double> variabletype1 = new ArrayList<Double>();
     List<Double> variabletype2 = new ArrayList<Double>();
     List<Double> variabletype3 = new ArrayList<Double>();
 
-    public double eval(Portofolio portofolio){
+    public double eval(Portofolio portofolio) {
         double result = 0;
         int a = variabletype1.size();
         int b = variabletype2.size();
@@ -33,7 +31,7 @@ public class Solution {
     }
 
 
-    public double getValue(int index){
+    public double getValue(int index) {
         int a = variabletype1.size();
         int b = variabletype2.size();
         int c = variabletype3.size();
@@ -46,7 +44,7 @@ public class Solution {
         return 0;
     }
 
-    public boolean isRealisable(Portofolio portofolio){
+    public boolean isRealisable(Portofolio portofolio) {
         return true;
     }
 
