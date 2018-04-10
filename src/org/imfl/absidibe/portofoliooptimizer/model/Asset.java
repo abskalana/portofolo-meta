@@ -1,7 +1,7 @@
 package org.imfl.absidibe.portofoliooptimizer.model;
 
 
-public class Asset  implements  Comparable<Asset>{
+public class Asset implements Comparable<Asset> {
 
     private double esperance;
     private double std;

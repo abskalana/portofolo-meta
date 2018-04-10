@@ -1,7 +1,5 @@
 package org.imfl.absidibe.portofoliooptimizer.model;
 
-import android.util.ArraySet;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +14,7 @@ public class Portofolio {
 
     public Portofolio() {
     }
+
     public void add(List<Asset> assets) {
         this.assets.addAll(assets);
     }
@@ -37,21 +36,21 @@ public class Portofolio {
         return assets;
     }
 
-    public Set<Type> getTypes(){
+    public Set<Type> getTypes() {
         Set<Type> types = new HashSet<Type>();
         for (Asset asset : assets) {
             types.add(asset.getType());
         }
-        return  types;
+        return types;
     }
 
-    public List<Asset> getAssets(Type type){
+    public List<Asset> getAssets(Type type) {
         List<Asset> results = new ArrayList<Asset>();
         for (Asset asset : assets) {
-            if(asset.getType()!=null && asset.getType().equals(type)){
+            if (asset.getType() != null && asset.getType().equals(type)) {
                 results.add(asset);
             }
         }
-        return  results;
+        return results;
     }
 }

@@ -1,9 +1,5 @@
 package org.imfl.absidibe.portofoliooptimizer.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Type implements Comparable<Type> {
 
     private String name;
