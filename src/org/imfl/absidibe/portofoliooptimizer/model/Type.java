@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Type {
+public class Type implements Comparable<Type> {
 
     private String name;
     private double budget;
     private double error;
     private double risk;
+
     private List<Double> bornesups = new ArrayList<Double>();
 
 
@@ -47,4 +48,48 @@ public class Type {
         return name.hashCode();
     }
 
+    public List<Double> getBornesups() {
+        return bornesups;
+    }
+
+    public void setBornesups(List<Double> bornesups) {
+        this.bornesups = bornesups;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
+    }
+
+    public double getError() {
+        return error;
+    }
+
+    public void setError(double error) {
+        this.error = error;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getRisk() {
+        return risk;
+    }
+
+    public void setRisk(double risk) {
+        this.risk = risk;
+    }
+
+    @Override
+    public int compareTo(Type type) {
+        return this.name.compareTo(type.name);
+    }
 }
