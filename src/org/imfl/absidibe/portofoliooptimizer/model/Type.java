@@ -11,8 +11,6 @@ public class Type implements Comparable<Type> {
     private double error;
     private double risk;
 
-    private List<Double> bornesups = new ArrayList<Double>();
-
 
     private Type() {
     }
@@ -25,13 +23,6 @@ public class Type implements Comparable<Type> {
         type.risk = risk;
         return type;
     }
-
-    public void setupBorneSup(int size, int nt) {
-        for (int i = 0; i < size; i++) {
-            bornesups.add(1.0 / nt);
-        }
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -48,45 +39,20 @@ public class Type implements Comparable<Type> {
         return name.hashCode();
     }
 
-    public List<Double> getBornesups() {
-        return bornesups;
-    }
-
-    public void setBornesups(List<Double> bornesups) {
-        this.bornesups = bornesups;
-    }
-
     public double getBudget() {
         return budget;
     }
 
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
 
     public double getError() {
         return error;
     }
 
-    public void setError(double error) {
-        this.error = error;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public double getRisk() {
         return risk;
     }
 
-    public void setRisk(double risk) {
-        this.risk = risk;
-    }
 
     @Override
     public int compareTo(Type type) {
