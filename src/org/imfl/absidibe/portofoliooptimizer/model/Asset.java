@@ -1,7 +1,7 @@
 package org.imfl.absidibe.portofoliooptimizer.model;
 
 
-public class Asset implements Comparable<Asset> {
+public class Asset  {
 
     private double esperance;
     private double std;
@@ -22,8 +22,5 @@ public class Asset implements Comparable<Asset> {
         return type;
     }
 
-    @Override
-    public int compareTo(Asset asset) {
-        return this.type.compareTo(asset.type);
-    }
+
 }

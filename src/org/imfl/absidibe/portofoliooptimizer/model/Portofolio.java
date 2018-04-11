@@ -10,27 +10,7 @@ public class Portofolio {
     public static final int MAX_ASSET_SIZE = 30;
 
     private List<Asset> assets = new ArrayList<Asset>();
-    private double[][] covariances = new double[MAX_ASSET_SIZE][MAX_ASSET_SIZE];
-
-    public Portofolio() {
-    }
-
-    public void add(List<Asset> assets) {
-        this.assets.addAll(assets);
-    }
-
-    public double[][] getCovariances() {
-        return covariances;
-    }
-
-    public void setCovariances(double[][] covariances) {
-        this.covariances = covariances;
-    }
-
-    public int getSize() {
-        return assets.size();
-    }
-
+    private Matrix covariances;
 
     public List<Asset> getAssets() {
         return assets;
@@ -53,4 +33,26 @@ public class Portofolio {
         }
         return results;
     }
+
+
+    public Portofolio() {
+
+    }
+
+    public void add(List<Asset> assets) {
+        this.assets.addAll(assets);
+    }
+
+    public Matrix getCovariances() {
+        return covariances;
+    }
+
+    public void setCovariances(Matrix covariances) {
+        this.covariances = covariances;
+    }
+
+    public int getSize() {
+        return assets.size();
+    }
+
 }

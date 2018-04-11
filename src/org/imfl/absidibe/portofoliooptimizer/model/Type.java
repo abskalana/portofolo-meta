@@ -1,6 +1,6 @@
 package org.imfl.absidibe.portofoliooptimizer.model;
 
-public class Type implements Comparable<Type> {
+public class Type {
 
     private String name;
     private double budget;
@@ -47,11 +47,5 @@ public class Type implements Comparable<Type> {
 
     public double getRisk() {
         return risk;
-    }
-
-
-    @Override
-    public int compareTo(Type type) {
-        return this.name.compareTo(type.name);
     }
 }
