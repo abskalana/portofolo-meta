@@ -1,13 +1,13 @@
-package org.imfl.absidibe.portofoliooptimizer.business;
+package org.imfl.absidibe.portofoliooptimizer.annealing;
 
 
-public abstract class TemperatureDecroissanceStrategy {
+public abstract class SimulatedStrategy {
 
-    protected int temperature;
-    protected int minTemperature;
+    protected double temperature;
+    protected double minTemperature;
 
 
-    public TemperatureDecroissanceStrategy(int temperature, int minTemperature) {
+    public SimulatedStrategy(double temperature, double minTemperature) {
         this.temperature = temperature;
         this.minTemperature = minTemperature;
     }

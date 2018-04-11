@@ -44,6 +44,10 @@ public class Type {
         return error;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
     public double getRisk() {
         return risk;

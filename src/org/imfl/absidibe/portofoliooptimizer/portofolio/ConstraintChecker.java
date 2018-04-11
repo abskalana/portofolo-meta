@@ -1,6 +1,7 @@
-package org.imfl.absidibe.portofoliooptimizer.business;
+package org.imfl.absidibe.portofoliooptimizer.portofolio;
 
 import org.imfl.absidibe.portofoliooptimizer.model.Asset;
+import org.imfl.absidibe.portofoliooptimizer.model.Matrix;
 import org.imfl.absidibe.portofoliooptimizer.model.Portofolio;
 import org.imfl.absidibe.portofoliooptimizer.model.Type;
 
@@ -46,14 +47,14 @@ public class ConstraintChecker {
 
     private static boolean isRiskRespected(Portofolio portofolio) {
         double sumTotal = 0;
-        double matricecovariance[][] = portofolio.getCovariances();
+        Matrix covariances = portofolio.getCovariances();
         int size = portofolio.getSize();
         List<Asset> assetsAll = portofolio.getAssets();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 double result_i = assetsAll.get(i).getWeight();
                 double result_j = assetsAll.get(j).getWeight();
-                sumTotal = sumTotal + matricecovariance[i][j] * result_i * result_j;
+                sumTotal = sumTotal + covariances.get(i,j) * result_i * result_j;
             }
         }
         if (sumTotal == 0) {
@@ -64,7 +65,7 @@ public class ConstraintChecker {
         int index = 0;
         for (Type type : types) {
             List<Asset> assets = portofolio.getAssets(type);
-            double sumOfType = computeSum(index, index + assets.size(), matricecovariance, assets);
+            double sumOfType = computeSum(index, index + assets.size(), covariances, assets);
             index = assets.size();
             if ((Math.sqrt(sumOfType) / sumTotal) > type.getRisk()) {
                 return false;
@@ -104,11 +105,11 @@ public class ConstraintChecker {
         return true;
     }
 
-    private static double computeSum(int start, int end, double matricecovariance[][], List<Asset> assets) {
+    private static double computeSum(int start, int end, Matrix covariance, List<Asset> assets) {
         double result = 0;
         for (int i = start; i < end; i++) {
             for (int j = start; j < end; j++) {
-                result = (result + matricecovariance[i][j]) * (assets.get(i).getWeight() * assets.get(j).getWeight());
+                result = (result + covariance.get(i,j)) * (assets.get(i).getWeight() * assets.get(j).getWeight());
             }
         }
         return result;

@@ -12,6 +12,10 @@ public class Matrix {
         A = new double[n][n];
     }
 
+    public int getN() {
+        return n;
+    }
+
     public double get(int i, int j) {
         return A[i][j];
     }
