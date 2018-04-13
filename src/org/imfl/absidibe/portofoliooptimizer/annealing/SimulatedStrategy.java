@@ -5,7 +5,7 @@ public abstract class SimulatedStrategy {
 
     protected double temperature;
     protected double minTemperature;
-    protected int interationMax;
+    protected int interationMax = 10000;
     private int iteration;
 
 

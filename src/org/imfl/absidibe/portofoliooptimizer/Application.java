@@ -1,7 +1,10 @@
 package org.imfl.absidibe.portofoliooptimizer;
 
+import org.imfl.absidibe.portofoliooptimizer.annealing.LinearyStrategy;
+import org.imfl.absidibe.portofoliooptimizer.annealing.SimulatedAnnealing;
 import org.imfl.absidibe.portofoliooptimizer.model.Portofolio;
 import org.imfl.absidibe.portofoliooptimizer.model.Type;
+import org.imfl.absidibe.portofoliooptimizer.portofolio.ConstraintChecker;
 import org.imfl.absidibe.portofoliooptimizer.portofolio.PortofolioBuilder;
 import org.imfl.absidibe.portofoliooptimizer.portofolio.PortofolioUtils;
 import java.util.HashMap;
@@ -29,6 +32,14 @@ public class Application {
 
         Portofolio voisinagePortofolio = PortofolioBuilder.voisinage(portofolio);
         PortofolioUtils.printAsset(PortofolioBuilder.voisinage(voisinagePortofolio));
+
+
+        SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing();
+        LinearyStrategy linearyStrategy = new LinearyStrategy(1000,1,0.95);
+        simulatedAnnealing.setStrategy(linearyStrategy);
+        simulatedAnnealing.setConstraintChecker(new ConstraintChecker());
+
+        simulatedAnnealing.process(initialPortoloio);
 
 
     }
