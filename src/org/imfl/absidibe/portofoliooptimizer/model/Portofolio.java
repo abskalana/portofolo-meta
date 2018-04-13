@@ -5,12 +5,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Portofolio {
-
-    public static final int MAX_ASSET_SIZE = 30;
-
+public class Portofolio implements  Cloneable{
+    /**
+     * Financial assets
+     */
     private List<Asset> assets = new ArrayList<Asset>();
+    /**
+     * Matrix of covariance between assets
+     */
     private Matrix covariances;
+
+    public Portofolio() {
+    }
 
     public List<Asset> getAssets() {
         return assets;
@@ -35,8 +41,12 @@ public class Portofolio {
     }
 
 
-    public Portofolio() {
-
+    @Override
+    public Object clone() {
+        Portofolio portofolio = new Portofolio();
+        portofolio.setCovariances(this.covariances);
+        portofolio.add(this.assets);
+        return portofolio;
     }
 
     public void add(List<Asset> assets) {

@@ -16,5 +16,4 @@ public class LinearyStrategy extends SimulatedStrategy {
         return temperature;
     }
 
-
 }

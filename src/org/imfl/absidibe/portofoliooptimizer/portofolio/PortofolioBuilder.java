@@ -6,14 +6,12 @@ import org.imfl.absidibe.portofoliooptimizer.model.Portofolio;
 import org.imfl.absidibe.portofoliooptimizer.model.Type;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class PortofolioBuilder {
 
-    private static final int RAND_MAX = 32767;
+    public static final int RAND_MAX = 32767;
+
 
 
     public static void setupPortofolio(Portofolio portofolio, Map<Type,Integer> types) {
@@ -33,6 +31,16 @@ public class PortofolioBuilder {
 
     }
 
+    public static  double getValue(Portofolio portofolio){
+        double result = 0;
+        List<Asset> assets = portofolio.getAssets();
+        for(Asset asset : assets){
+            result = result + asset.getWeight()*asset.getWeight();
+        }
+        return result;
+
+    }
+
     private static  Matrix createCovariance(int n) {
         DecimalFormat df = new DecimalFormat(".##");
         Random random = new Random();
@@ -49,5 +57,39 @@ public class PortofolioBuilder {
                 }
             }
         return matrix;
+    }
+
+
+    public static Portofolio getInitialPortoloio(Portofolio portofolio) {
+        Portofolio clone = new Portofolio();
+        clone.setCovariances(portofolio.getCovariances());
+        List<Asset> assets = portofolio.getAssets();
+        int size = assets.size();
+        for(Asset asset : assets){
+            asset.setWeight(1.0/size);
+        }
+        clone.add(assets);
+        return clone;
+
+    }
+
+    public static Portofolio voisinage(Portofolio portofolio) {
+        List<Type> types = new ArrayList<Type>(portofolio.getTypes());
+        Portofolio temp = (Portofolio) portofolio.clone();
+        for (int i = 0; i < types.size(); i++) {
+            List<Asset> assets = portofolio.getAssets(types.get(i));
+            for (Asset asset : assets) {
+                if (asset.getWeight() > 0.5) {
+                    return temp;
+                }
+                double f = Math.random();
+                if (asset.getWeight() < f / 2) {
+                    asset.setWeight((f / 2) - asset.getWeight());
+                } else {
+                    asset.setWeight(asset.getWeight() - (f / 2));
+                }
+            }
+        }
+        return temp;
     }
 }

@@ -9,13 +9,7 @@ public class SimulatedAnnealing {
 
     private SimulatedStrategy strategy;
     private ConstraintChecker constraintChecker;
-    private Portofolio initialSolution;
 
-
-
-    public void setInitialSolution(Portofolio initialSolution) {
-        this.initialSolution = initialSolution;
-    }
 
     public void setConstraintChecker(ConstraintChecker constraintChecker) {
         this.constraintChecker = constraintChecker;
@@ -25,7 +19,7 @@ public class SimulatedAnnealing {
         this.strategy = strategy;
     }
 
-    public Portofolio process(Portofolio portofolio) {
+    public Portofolio process(Portofolio initialSolution) throws CloneNotSupportedException {
         if(constraintChecker == null){
             throw  new NullPointerException("The constraint checker must not be null");
         }
@@ -35,6 +29,17 @@ public class SimulatedAnnealing {
         if(initialSolution == null){
 
         }
+        Portofolio currentSolution = initialSolution;
+        Portofolio bestSolution  = (Portofolio)currentSolution.clone();
+        while (strategy.shouldContinue()){
+            double temperature1 = strategy.getCurrentTemperature();
+            Portofolio neightboor = generate(initialSolution);
+            temperature1  = strategy.getNext();
+        }
+        return null;
+    }
+
+    private Portofolio generate(Portofolio initialSolution) {
         return null;
     }
 

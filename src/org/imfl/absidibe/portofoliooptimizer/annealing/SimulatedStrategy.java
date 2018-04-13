@@ -5,6 +5,8 @@ public abstract class SimulatedStrategy {
 
     protected double temperature;
     protected double minTemperature;
+    protected int interationMax;
+    private int iteration;
 
 
     public SimulatedStrategy(double temperature, double minTemperature) {
@@ -13,7 +15,9 @@ public abstract class SimulatedStrategy {
     }
 
     public boolean shouldContinue() {
-        return this.temperature > minTemperature;
+        boolean shouldContinue = this.temperature > minTemperature && iteration < interationMax;
+        iteration++;
+        return shouldContinue;
     }
 
     public abstract double getNext();

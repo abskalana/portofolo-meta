@@ -1,8 +1,6 @@
 package org.imfl.absidibe.portofoliooptimizer.annealing;
 
-/**
- * Created by absidibe on 11/04/2018.
- */
+
 public class ExpStrategy extends SimulatedStrategy {
 
 
