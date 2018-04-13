@@ -5,7 +5,7 @@ public abstract class SimulatedStrategy {
 
     protected double temperature;
     protected double minTemperature;
-    protected int interationMax = 10000;
+    protected int interationMax = 100000;
     private int iteration;
 
 
@@ -22,6 +22,9 @@ public abstract class SimulatedStrategy {
 
     public abstract double getNext();
 
+    public int getIteration() {
+        return iteration;
+    }
 
     public double getCurrentTemperature() {
         return temperature;

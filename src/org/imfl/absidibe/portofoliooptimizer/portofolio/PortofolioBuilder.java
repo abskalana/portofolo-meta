@@ -74,20 +74,14 @@ public class PortofolioBuilder {
     }
 
     public static Portofolio voisinage(Portofolio portofolio) {
-        List<Type> types = new ArrayList<Type>(portofolio.getTypes());
         Portofolio temp = (Portofolio) portofolio.clone();
-        for (int i = 0; i < types.size(); i++) {
-            List<Asset> assets = portofolio.getAssets(types.get(i));
-            for (Asset asset : assets) {
-                if (asset.getWeight() > 0.5) {
-                    return temp;
-                }
-                double f = Math.random();
-                if (asset.getWeight() < f / 2) {
-                    asset.setWeight((f / 2) - asset.getWeight());
-                } else {
-                    asset.setWeight(asset.getWeight() - (f / 2));
-                }
+        List<Asset> assets = portofolio.getAssets();
+        for (Asset asset : assets) {
+            double f = Math.random()/assets.size();
+            if (asset.getWeight() < f / 2) {
+                asset.setWeight((f / 2) - asset.getWeight());
+            } else {
+                asset.setWeight(asset.getWeight() - (f / 2));
             }
         }
         return temp;

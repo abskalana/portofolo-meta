@@ -12,20 +12,22 @@ import java.util.Set;
 public class ConstraintChecker {
 
 
-    public static boolean isRealisable(Portofolio portofolio) {
+    public  boolean isRealisable(Portofolio portofolio) {
         if (!isAllBudgetUsed(portofolio)) {
             return false;
         }
+        /*
         if (!isEachTypeBudgetRespected(portofolio)) {
-            return false;
+            return true;
         }
 
         if (!isErrorRespected(portofolio)) {
-            return false;
+            return true;
         }
         if (!isRiskRespected(portofolio)) {
-            return false;
+            return true;
         }
+        */
         return true;
     }
 
@@ -41,7 +43,13 @@ public class ConstraintChecker {
             budget = budget + result;
 
         }
-        return !(budget > 1 || budget < 0.95);
+        if(budget > 1.1){
+            return false;
+        }
+        if(budget <0.9){
+            return false;
+        }
+        return true;
     }
 
 

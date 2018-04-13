@@ -1,19 +1,23 @@
 package org.imfl.absidibe.portofoliooptimizer;
 
-import org.imfl.absidibe.portofoliooptimizer.annealing.LinearyStrategy;
-import org.imfl.absidibe.portofoliooptimizer.annealing.SimulatedAnnealing;
+import org.imfl.absidibe.portofoliooptimizer.annealing.*;
 import org.imfl.absidibe.portofoliooptimizer.model.Portofolio;
 import org.imfl.absidibe.portofoliooptimizer.model.Type;
-import org.imfl.absidibe.portofoliooptimizer.portofolio.ConstraintChecker;
 import org.imfl.absidibe.portofoliooptimizer.portofolio.PortofolioBuilder;
 import org.imfl.absidibe.portofoliooptimizer.portofolio.PortofolioUtils;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Application {
 
 
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args) throws CloneNotSupportedException, IOException {
         Portofolio portofolio = new Portofolio();
 
         Map<Type,Integer> maps = new HashMap<Type, Integer>();
@@ -34,12 +38,27 @@ public class Application {
         PortofolioUtils.printAsset(PortofolioBuilder.voisinage(voisinagePortofolio));
 
 
-        SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing();
+        SimulatedAnnealing simulatedAnnealing = new SimulatedAnnealing(new LinearyStrategy(1000,1.0,0.95));
         LinearyStrategy linearyStrategy = new LinearyStrategy(1000,1,0.95);
         simulatedAnnealing.setStrategy(linearyStrategy);
-        simulatedAnnealing.setConstraintChecker(new ConstraintChecker());
 
         simulatedAnnealing.process(initialPortoloio);
+
+        List<SimulatedStrategy> simulatedStrategies = new ArrayList<SimulatedStrategy>();
+        simulatedStrategies.add(new LinearyStrategy(1000,1.0,0.95));
+        simulatedStrategies.add(new FastStrategy(1000,1.0,0.95));
+        simulatedStrategies.add(new BoltzStrategy(1000,1.0,0.95));
+        simulatedStrategies.add(new ExpStrategy(1000,1.0,0.95));
+
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("result.csv"));
+        bufferedWriter.write("Nom;Herfindahl index value; Temperature; Iteration");
+        bufferedWriter.newLine();
+        for(SimulatedStrategy strategy :simulatedStrategies){
+            System.out.println(simulatedAnnealing.process(initialPortoloio,strategy));
+            bufferedWriter.write(simulatedAnnealing.process(initialPortoloio,strategy));
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
 
 
     }
